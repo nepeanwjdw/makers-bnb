@@ -20,5 +20,8 @@ class MakersBNBApp < Sinatra::Base
     User.create(name: params[:name], email: params[:email], password: params[:password])
     redirect('/')
   end
-
+  
+  get '/create-space' do
+    erb(:create_space)
+  end
 end

@@ -3,6 +3,6 @@ CREATE TABLE spaces(
   name VARCHAR(50),
   user_id INT,
   description VARCHAR(300),
-  price INT,
+  price DECIMAL,
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
