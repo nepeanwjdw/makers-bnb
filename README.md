@@ -34,8 +34,8 @@ We would like a web application that allows users to list spaces they have avail
 
 ### Headline specifications
 
-- Any signed-up user can list a new space. ~~Scratch this.~~
-- Users can list multiple spaces. ~~Scratch this.~~
+- ~~Any signed-up user can list a new space.~~
+- ~~Users can list multiple spaces.~~
 - Users should be able to name their space, provide a short description of the space, and a price per night.
 - Users should be able to offer a range of dates where their space is available.
 - Any signed-up user can request to hire any space for one night, and this should be approved by the user that owns that space.
