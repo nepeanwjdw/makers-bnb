@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './DatabaseConnection_setup'
+require_relative './lib/Users'
 
 class MakersBNBApp < Sinatra::Base
   run! if app_file == $0
