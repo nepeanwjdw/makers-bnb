@@ -1,7 +1,6 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/wayman/Projects/week6/makers-bnb/spec/Users_spec.rb": [
         1,
         null,
         1,
@@ -57,6 +56,5 @@
         null
       ]
     },
-    "timestamp": 1543855196
   }
 }
