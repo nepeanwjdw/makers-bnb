@@ -1,6 +1,67 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/stuartadair/Projects/week6/makers-bnb/spec/Space_spec.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/stuartadair/Projects/week6/makers-bnb/spec/database_helpers.rb": [
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null
+      ],
+      "/Users/stuartadair/Projects/week6/makers-bnb/lib/Space.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
       "/Users/stuartadair/Projects/week6/makers-bnb/spec/database_connection_spec.rb": [
         1,
         null,
@@ -22,6 +83,6 @@
         null
       ]
     },
-    "timestamp": 1543838189
+    "timestamp": 1543851824
   }
 }
