@@ -12,4 +12,8 @@ class MakersBNBApp < Sinatra::Base
     erb(:index)
   end
 
+  get '/create-space' do
+    erb(:create_space)
+  end
+
 end

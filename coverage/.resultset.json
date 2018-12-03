@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/stuartadair/Projects/week6/makers-bnb/spec/Space_spec.rb": [
+      "/Users/stephanieparker/Projects/Week6/makers-bnb/spec/Space_spec.rb": [
         1,
         1,
         1,
@@ -31,7 +31,7 @@
         null,
         null
       ],
-      "/Users/stuartadair/Projects/week6/makers-bnb/spec/database_helpers.rb": [
+      "/Users/stephanieparker/Projects/Week6/makers-bnb/spec/database_helpers.rb": [
         1,
         null,
         1,
@@ -40,39 +40,70 @@
         0,
         null
       ],
-      "/Users/stuartadair/Projects/week6/makers-bnb/lib/Space.rb": [
+      "/Users/stephanieparker/Projects/Week6/makers-bnb/lib/Space.rb": [
         1,
         null,
         1,
         null,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
         null,
         null,
         1,
-        1,
-        1,
+        2,
+        2,
         null,
-        null,
-        null
-      ],
-      "/Users/stuartadair/Projects/week6/makers-bnb/spec/database_connection_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
         null,
         null
       ],
-      "/Users/stuartadair/Projects/week6/makers-bnb/spec/features/testing_framework_spec.rb": [
+      "/Users/stephanieparker/Projects/Week6/makers-bnb/spec/database_connection_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/stephanieparker/Projects/Week6/makers-bnb/spec/features/create_space_spec.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/stephanieparker/Projects/Week6/makers-bnb/spec/features/testing_framework_spec.rb": [
         1,
         null,
         1,
@@ -83,6 +114,6 @@
         null
       ]
     },
-    "timestamp": 1543851824
+    "timestamp": 1543856736
   }
 }
