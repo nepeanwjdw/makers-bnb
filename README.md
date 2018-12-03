@@ -12,6 +12,7 @@ As a registered user,
 So I can rent out a property,
 I would like to sign in.
 ```
+```
 As a registered user,
 So other people can't rent out a property as me,
 I would like to sign out.
