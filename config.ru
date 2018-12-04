@@ -1,3 +1,3 @@
-require './app'
-use Rack::MethodOverride
-run MakersBNBApp
+require_relative './app'
+# use Rack::MethodOverride
+run MakersBnB
