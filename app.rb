@@ -21,7 +21,7 @@ class MakersBNBApp < Sinatra::Base
     User.create(name: params[:name], email: params[:email], password: params[:password])
     redirect('/')
   end
-  
+
   get '/sign_in' do
     erb(:sign_in)
   end
@@ -30,8 +30,12 @@ class MakersBNBApp < Sinatra::Base
     User.fetch(email: params[:email], password: params[:password])
     redirect('/')
   end
-  
+
   get '/create-space' do
     erb(:create_space)
+  end
+
+  get '/view_all_spaces' do
+    erb(:view_all_spaces)
   end
 end
