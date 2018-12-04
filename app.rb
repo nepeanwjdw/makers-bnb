@@ -23,7 +23,7 @@ class MakersBNBApp < Sinatra::Base
   post '/sign_up' do
     user = User.create(name: params[:name], email: params[:email], password: params[:password])
     session[:user_id] = user.user_id
-    redirect('/')
+    redirect('/view_all_spaces')
   end
 
   get '/sign_in' do
@@ -34,12 +34,16 @@ class MakersBNBApp < Sinatra::Base
     user = User.authenticate(email: params[:email], password: params[:password])
     if user
       session[:user_id] = user.user_id
-      redirect('/')
+      redirect('/view_all_spaces')
     else
       flash[:notice] = "Login details incorrect, try again!"
       redirect('/sign_in')
-    end  
+    end
   end
+
+  get '/view_all_spaces' do
+    @spaces = Space.all
+    erb(:view_all_spaces)
 
   get '/create_space' do
     erb(:create_space)

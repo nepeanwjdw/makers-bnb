@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% @spaces.each do |hash| %>
+      <h3>Space</h3>
+      <p>ID: <%= hash["space_id"] %></p>
+      <p>Name: <%= hash["spacename"] %></p>
+      <p>Description: <%= hash["description"] %></p>
+      <p>Price: £<%= hash["price"] %></p>
+      <p>Host ID: <%= hash["user_id"] %></p>
+      <p>Host Name: <%= hash["username"] %></p>
+      <p>Host Email: <%= hash["email"] %></p>
+      <p>---------</p>
+    <% end %>
+  </body>
+</html>

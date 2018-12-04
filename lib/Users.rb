@@ -1,4 +1,3 @@
-require 'pg'
 require_relative 'DatabaseConnection'
 
 # this class is class
