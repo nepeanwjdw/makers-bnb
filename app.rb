@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './DatabaseConnection_setup'
+require 'date'
 require_relative './lib/Users'
 require_relative './lib/Space'
 
@@ -37,8 +38,13 @@ class MakersBNBApp < Sinatra::Base
   end
 
   post '/create_space' do
-    # Space.create(name: params[:name], description: params[:description], price: params[:price], user_id: 1)
-    p params[:daterange]
+    space = Space.create(name: params[:name], description: params[:description], price: params[:price], user_id: 1)
+    dates = params[:daterange].split(" - ")
+    start_date = dates.first.split("/").reverse.join("/")
+    p start_date
+    end_date = dates.last.split("/").reverse.join("/")
+    p end_date
+    Space.create_availability(space_id: space.space_id, start_date: start_date, end_date: end_date)
     redirect('/create_space')
   end
 end
