@@ -3,17 +3,70 @@
   <head>
     <meta charset="utf-8">
     <title>Create Space</title>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   </head>
 
 
   <body>
 
-    <form action="/create-space" method="post">
+    <form action="/create_space" method="post">
       Name: <input type="text" name="name">
       Description: <input type="text" name="description">
       Price: <input type="text" name="price">
+      Select dates: <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
       <input type="submit" value="Submit">
     </form>
+
+
+    <script>
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        "locale": {
+            "format": "DD/MM/YYYY",
+            "separator": " - ",
+            "applyLabel": "Apply",
+            "cancelLabel": "Cancel",
+            "fromLabel": "From",
+            "toLabel": "To",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "daysOfWeek": [
+                "Su",
+                "Mo",
+                "Tu",
+                "We",
+                "Th",
+                "Fr",
+                "Sa"
+            ],
+            "monthNames": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "firstDay": 1
+        },
+        "startDate": "11/12/2018",
+        "endDate": "12/12/2018"
+      }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
+    });
+    </script>
+
 
 
   </body>
