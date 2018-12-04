@@ -22,4 +22,13 @@ class MakersBNBApp < Sinatra::Base
     redirect('/')
   end
 
+  get '/sign_in' do
+    erb(:sign_in)
+  end
+
+  post '/sign_in' do
+    User.fetch(email: params[:email], password: params[:password])
+    redirect('/')
+  end
+
 end
