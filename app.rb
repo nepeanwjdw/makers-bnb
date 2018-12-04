@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './DatabaseConnection_setup'
+require_relative './lib/Space'
 require_relative './lib/Users'
 
 class MakersBNBApp < Sinatra::Base
@@ -19,7 +20,7 @@ class MakersBNBApp < Sinatra::Base
 
   post '/sign_up' do
     User.create(name: params[:name], email: params[:email], password: params[:password])
-    redirect('/')
+    redirect('/view_all_spaces')
   end
 
   get '/sign_in' do
@@ -28,7 +29,7 @@ class MakersBNBApp < Sinatra::Base
 
   post '/sign_in' do
     User.fetch(email: params[:email], password: params[:password])
-    redirect('/')
+    redirect('/view_all_spaces')
   end
 
   get '/create-space' do
@@ -36,6 +37,7 @@ class MakersBNBApp < Sinatra::Base
   end
 
   get '/view_all_spaces' do
+    @spaces = Space.all
     erb(:view_all_spaces)
   end
 end

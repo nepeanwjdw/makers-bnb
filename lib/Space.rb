@@ -20,7 +20,6 @@ class Space
   end
 
   def self.all
-    result = DatabaseConnection.query("SELECT * FROM spaces;")
-    result.map { |space| Space.new(space_id: space['space_id'], name: space['name'], description: space['description'], price: space['price'], user_id: space['user_id']) }
+    results = DatabaseConnection.query("SELECT users.user_id, users.name AS username, users.email, spaces.space_id, spaces.name AS spacename, spaces.description, spaces.price FROM spaces INNER JOIN users ON spaces.user_id=users.user_id ORDER BY spaces.space_id ASC;")
   end
 end
