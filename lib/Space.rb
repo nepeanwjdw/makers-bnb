@@ -1,3 +1,5 @@
+require_relative 'DatabaseConnection'
+
 class Space
 
   attr_reader :space_id, :name, :description, :price, :user_id
@@ -8,6 +10,10 @@ class Space
     @description = description
     @price = price.to_f
     @user_id = user_id.to_i
+  end
+
+  def self.all
+    results = DatabaseConnection.query("SELECT users.user_id, users.name AS username, users.email, spaces.space_id, spaces.name AS spacename, spaces.description, spaces.price FROM spaces INNER JOIN users ON spaces.user_id=users.user_id ORDER BY spaces.space_id ASC;")
   end
 
   def self.create(name:, description:, price:, user_id:)
@@ -35,5 +41,4 @@ class Space
         row
     end
   end
-
 end

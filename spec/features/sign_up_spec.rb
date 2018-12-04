@@ -5,6 +5,6 @@ feature 'Signing up for Makers BnB' do
     fill_in('email', with: 'test@email.com')
     fill_in('password', with: 'password')
     click_on('Submit')
-    expect(current_path).to eq('/')
+    expect(current_path).to eq('/view_all_spaces')
   end
 end
