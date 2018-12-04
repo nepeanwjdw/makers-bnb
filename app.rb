@@ -12,6 +12,7 @@ class MakersBNBApp < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    @user = User.retrieve(user_id: session[:user_id])
     erb(:index)
   end
 
@@ -20,7 +21,8 @@ class MakersBNBApp < Sinatra::Base
   end
 
   post '/sign_up' do
-    User.create(name: params[:name], email: params[:email], password: params[:password])
+    user = User.create(name: params[:name], email: params[:email], password: params[:password])
+    session[:user_id] = user.user_id
     redirect('/')
   end
 
@@ -29,8 +31,14 @@ class MakersBNBApp < Sinatra::Base
   end
 
   post '/sign_in' do
-    User.fetch(email: params[:email], password: params[:password])
-    redirect('/')
+    user = User.authenticate(email: params[:email], password: params[:password])
+    if user
+      session[:user_id] = user.user_id
+      redirect('/')
+    else
+      flash[:notice] = "Login details incorrect, try again!"
+      redirect('/sign_in')
+    end  
   end
 
   get '/create_space' do

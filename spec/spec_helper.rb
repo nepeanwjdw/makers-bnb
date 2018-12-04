@@ -6,7 +6,7 @@ require 'simplecov'
 require 'simplecov-console'
 require 'web_helpers.rb'
 require_relative './setup_test_database'
-require_relative './setup_test_spaces_database'
+
 
 require_relative '../app.rb'
 
