@@ -5,15 +5,16 @@ require 'Space'
 describe Space do
 
   before(:each) do
-    setup_test_spaces_database
+    setup_test_database
   end
 
   describe 'space' do
     it 'can be created' do
+      test_user = create_test_user
       name = "Makers BNB"
       description = "Lovely space to stay"
       price = 99
-      user_id = 1
+      user_id = test_user["user_id"]
 
       space = Space.create(name: name, description: description, price: price, user_id: user_id)
 
@@ -21,7 +22,27 @@ describe Space do
       expect(space.name).to eq name
       expect(space.description).to eq description
       expect(space.price).to eq price
-      expect(space.user_id).to eq user_id
+      expect(space.user_id).to eq user_id.to_i
+    end
+  end
+
+  describe 'dates' do
+    it 'a date range can be created' do
+      test_user = create_test_user
+      name = "Makers BNB"
+      description = "Lovely space to stay"
+      price = 99
+      user_id = test_user["user_id"]
+
+      space = Space.create(name: name, description: description, price: price, user_id: user_id)
+
+      start_date = "2018-01-01"
+      end_date = "2018-01-02"
+      available = Space.create_availability(space_id: space.space_id, start_date: start_date, end_date: end_date)
+
+      expect(available["start_date"]).to eq(start_date)
+      expect(available["end_date"]).to eq(end_date)
+
     end
   end
 
