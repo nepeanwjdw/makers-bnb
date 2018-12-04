@@ -2,9 +2,23 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Sign in</title>
+    <style>
+
+  blink {
+    animation: blinker 0.6s linear infinite;
+    color: #ff0000;
+   }
+  @keyframes blinker {
+    50% { opacity: 0; }
+   }
+
+</style>
   </head>
   <body>
+
+      <blink><%= flash[:notice] %></blink>
+
     <form action="/sign_in" method="post">
       <input type="text" name="email" placeholder="Enter your email">
       <input type="password" name="password" placeholder="Enter your password">

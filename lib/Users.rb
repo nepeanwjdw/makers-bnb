@@ -23,11 +23,13 @@ class User
     )
   end
 
-  def self.fetch(email:, password:)
+
+  def self.retrieve(user_id:)
+    return nil unless user_id
     result = DatabaseConnection.query("
-      SELECT user_id, name, email
+      SELECT *
       FROM users
-      WHERE email = '#{email}' AND password = '#{password}';
+      WHERE user_id = '#{user_id}';
       ")
     User.new(
       user_id: result[0]['user_id'],
@@ -35,4 +37,15 @@ class User
       email: result[0]['email']
     )
   end
+
+  def self.authenticate(email:, password:)
+    result = DatabaseConnection.query("SELECT * FROM users WHERE email = '#{email}' AND password = '#{password}'").first
+    return if result == nil
+    User.new(
+      user_id: result['user_id'],
+      name: result['name'],
+      email: result['email']
+    )
+  end
+
 end
