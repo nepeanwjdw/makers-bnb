@@ -22,7 +22,7 @@ class MakersBNBApp < Sinatra::Base
     redirect('/')
   end
   
-    get '/sign_in' do
+  get '/sign_in' do
     erb(:sign_in)
   end
 
