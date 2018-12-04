@@ -35,7 +35,7 @@ describe Space do
 
       expect(spaces.length).to eq 2
       expect(spaces.first).to be_a Space
-      expect(spaces.first.space_id).to eq space_a["space_id"]
+      expect(spaces.first.space_id).to eq space_a[0]["space_id"].to_i
       expect(spaces.first.user_id).to eq 15
       expect(spaces.first.description).to eq 'Great!'
       expect(spaces.first.price).to eq 49.99
