@@ -2,27 +2,29 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Sign in</title>
+    <title>Makers BnB - Sign In</title>
     <style>
 
-  blink {
-    animation: blinker 0.6s linear infinite;
-    color: #ff0000;
-   }
-  @keyframes blinker {
-    50% { opacity: 0; }
-   }
+      blink {
+        animation: blinker 0.6s linear infinite;
+        color: #ff0000;
+      }
+      @keyframes blinker {
+        50% { opacity: 0; }
+      }
 
-</style>
+    </style>
   </head>
   <body>
 
-      <blink><%= flash[:notice] %></blink>
+    <blink><%= flash[:notice] %></blink>
 
     <form action="/sign_in" method="post">
       <input type="text" name="email" placeholder="Enter your email">
       <input type="password" name="password" placeholder="Enter your password">
       <input type="submit" value="Submit">
     </form>
+
+    <a href='/'>Back</a>
   </body>
 </html>

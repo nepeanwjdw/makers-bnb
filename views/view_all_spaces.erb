@@ -2,11 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Maker BnB - View All Spaces</title>
   </head>
   <body>
+    <h3>Spaces</h3>
+    <a href='/create_space'>Create a space</a>
+    <a href='/'>Sign Out</a>
     <% @spaces.each do |hash| %>
-      <h3>Space</h3>
       <p>ID: <%= hash["space_id"] %></p>
       <p>Name: <%= hash["spacename"] %></p>
       <p>Description: <%= hash["description"] %></p>
