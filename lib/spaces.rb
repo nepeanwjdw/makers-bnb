@@ -12,6 +12,10 @@ class Space
     @user_id = user_id.to_i
   end
 
+  def price_currency
+    "£#{'%.2f' % @price}"
+  end
+
   def self.all
     DatabaseConnection.query("
       SELECT users.user_id, users.name
@@ -20,6 +24,16 @@ class Space
       FROM spaces
       INNER JOIN users ON spaces.user_id=users.user_id
       ORDER BY spaces.space_id ASC;")
+  end
+
+  def self.get_space_info(space_id:)
+    DatabaseConnection.query("
+      SELECT users.user_id, users.name
+      AS username, users.email, spaces.space_id, spaces.name
+      AS spacename, spaces.description, spaces.price
+      FROM spaces
+      INNER JOIN users ON spaces.user_id=users.user_id
+      WHERE spaces.space_id = '#{space_id}';").first
   end
 
   def self.create(name:, description:, price:, user_id:)

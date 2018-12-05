@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Makers BnB - Request Space</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  </head>
+
+  <body>
+
+    <%= flash[:notice] %>
+
+    Space name: <%= @space.name %><br />
+    Space description: <%= @space.description %><br />
+    Space price per night: <%= @space.price_currency %><br />
+    Owner name: <%= @space_info['username'] %><br />
+    Owner id: <%= @space_info['user_id'] %><br />
+    Owner email: <a href="mailto:<%= @space_info['email'] %>"><%= @space_info['email'] %></a><br />
+
+    <form action="/<%= @space.space_id %>/request_space" method="post">
+      Select date: <input type="date" name="booking_start_date">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
