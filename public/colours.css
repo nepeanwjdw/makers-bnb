@@ -1,0 +1,62 @@
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #7CA3D6;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  padding: 7px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 3px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+h1.heading {
+  font-family: "Didot", serif;
+  font-style: italic;
+}
+p.a {
+  font-size: 20px;
+  color: #000000;
+  font-family: "Didot", serif;
+}
+
+div {
+  background-color: #B7D7EE;
+  opacity: 0.8;
+  width: 200px;
+  border: 5px solid #99BBD3;
+  border-radius: 30px;
+  padding: 25px;
+  margin-top: 100px;
+  margin-left: 585px;
+  margin-right: 200px;
+}

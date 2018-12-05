@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <title>Makers BnB</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" href="colours.css">
   </head>
+
   <body>
-    <h1>MakersBnB</h1>
-    <a href="/sign_in">Sign In</a><br>
-    <a href="/sign_up">Sign Up</a><br>
+
+    <style>
+      body {
+        text-align:center;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+
+    <h1 class="heading">Makers BnB</h1>
+
+      <form action="/sign_in">
+        <button type="submit" class="button" style="vertical-align:middle"><span>Sign In </span>
+      </form>
+
+      <form action="/sign_up">
+        <button type="submit" class="button" style="vertical-align:middle"><span>Sign Up </span>
+      </form>
+
   </body>
 </html>
