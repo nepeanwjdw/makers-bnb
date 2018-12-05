@@ -13,7 +13,7 @@ class User
   def self.create(name:, email:, password:)
     result = DatabaseConnection.query("
       INSERT INTO users (name, email, password)
-      VALUES('#{name}', '#{email}', '#{password}')
+      VALUES('#{name.gsub("'","''")}', '#{email.gsub("'","''")}', '#{password.gsub("'","''")}')
       RETURNING user_id, name, email;
       ").first
     User.new(
@@ -39,7 +39,7 @@ class User
   def self.authenticate(email:, password:)
     result = DatabaseConnection.query("
       SELECT * FROM users
-      WHERE email = '#{email}' AND password = '#{password}'
+      WHERE email = '#{email.gsub("'","''")}' AND password = '#{password.gsub("'","''")}'
       ").first
     return if result.nil?
     User.new(

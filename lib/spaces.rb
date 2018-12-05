@@ -25,7 +25,7 @@ class Space
   def self.create(name:, description:, price:, user_id:)
     result = DatabaseConnection.query("
       INSERT INTO spaces (name, description, price, user_id)
-      VALUES('#{name}', '#{description}', '#{price}', '#{user_id}')
+      VALUES('#{name.gsub("'","''")}', '#{description.gsub("'","''")}', '#{price}', '#{user_id}')
       RETURNING space_id, name, description, price, user_id;")
     Space.new(
       space_id: result[0]['space_id'], name: result[0]['name'],
