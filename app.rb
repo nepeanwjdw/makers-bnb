@@ -72,5 +72,10 @@ class MakersBnB < Sinatra::Base
     erb(:view_all_spaces)
   end
 
+  get '/host_dashboard' do
+    @spaces = Space.all
+    erb(:host_dashboard)
+  end
+
   run! if app_file == $0
 end

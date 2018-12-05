@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href='/create_space'>Create a space</a>
+    <a href='/'>Sign Out</a>
+    <h3>Your Spaces</h3>
+    <% @spaces.each do |hash| %>
+      <p><%= hash["spacename"] %> <input type="button" name="Edit" value="Edit"></p>
+      <p>---------</p>
+    <% end %>
+  </body>
+</html>
