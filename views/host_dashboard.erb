@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href='/create_space'>Create a space</a>
+    <a href='/'>Sign Out</a>
+    <h3>Profile Settings</h3>
+    <form class="" action="/host_dashboard" method="post">
+      <label for="">Name</label>
+      <input type="text" value="Host's Name" name=""><br>
+      <label for="">Email</label>
+      <input type="text" value="Host's Email" name=""><br>
+      <label for="">Password</label>
+      <input type="text" value="" name=""><br>
+      <button type="submit" class="btn btn-primary">Update profile</button>
+    </form>
+    <h3>Booking Requests</h3>
+    <h3>Your Spaces</h3>
+    <% @spaces.each do |hash| %>
+      <p><%= hash["spacename"] %> <input type="button" name="Edit" value="Edit"></p>
+      <p>---------</p>
+    <% end %>
+  </body>
+</html>
