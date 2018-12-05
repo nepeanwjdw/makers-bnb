@@ -9,6 +9,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+
+  
   </head>
 
   <body>
@@ -24,14 +26,14 @@
 
     <h1 class="heading">Create a space</h1>
 
+      <form action="/create_space" method="post">
+       <input type="text" name="name" placeholder="Name of the space">
+       <input type="text" name="description" placeholder="Description">
+       <input type="text" name="price" placeholder="Price per night">
+        Select dates: <input type="text" name="daterange" value="01/01/2018 - 01/15/2018">
+       <button type="submit" class="button" style="vertical-align:middle" value="Submit"><span>Submit</span>
+      </form>
 
-    <form action="/create_space" method="post">
-     <input type="text" name="name" placeholder="Name of the space">
-     <input type="text" name="description" placeholder="Description">
-     <input type="text" name="price" placeholder="Price per night">
-      Select dates: <input type="text" name="daterange" value="01/01/2018 - 01/15/2018">
-     <button type="submit" class="button" style="vertical-align:middle" value="Submit"><span>Submit</span>
-    </form>
 
     <script>
     $(function() {

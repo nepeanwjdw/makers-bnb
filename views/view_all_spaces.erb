@@ -7,9 +7,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
   </head>
 
-
-
-
   <body>
     <style>
       body {
@@ -25,7 +22,7 @@
 
     <a href='/create_space'>Create a space</a>
     <a href='/'>Sign Out</a>
-    <div>
+    <div class="space">
     <% @spaces.each do |hash| %>
       <p class="a">ID: <%= hash["space_id"] %></p>
       <p class="a">Name: <%= hash["spacename"] %></p>
@@ -37,6 +34,11 @@
       <p>---------</p>
     <% end %>
     </div>
+
+    <div class="logo">
+    <img src= 'Webp.net-resizeimage.jpg'>
+    <div>
+      
     <script src="jquery.js"></script>
   </body>
 </html>
