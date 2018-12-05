@@ -23,6 +23,14 @@ class Booking
     end
   end
 
+  def self.confirm_booking(booking_id:)
+    DatabaseConnection.query("
+      UPDATE bookings
+      SET booking_confirmed = true
+      WHERE booking_request_id = #{booking_id};
+    ")
+  end
+
   def self.create_booking_request(booker_user_id:, space_id:, booking_start_date:, booking_end_date: nil)
     # following line handles current functionality where booking is just one day
     booking_end_date = booking_start_date if booking_end_date == nil
@@ -31,7 +39,8 @@ class Booking
     result = DatabaseConnection.query("
       INSERT INTO bookings (booker_user_id, space_id, booking_start_date, booking_end_date, booking_confirmed)
       VALUES('#{booker_user_id}', '#{space_id}', '#{booking_start_date}', '#{booking_end_date}', #{booking_confirmed})
-      RETURNING booking_request_id, booker_user_id, space_id, booking_start_date, booking_end_date, booking_confirmed;")
+      RETURNING booking_request_id, booker_user_id, space_id, booking_start_date, booking_end_date, booking_confirmed;
+    ")
     Booking.new(
       booking_request_id: result[0]['booking_request_id'],
       booker_user_id: result[0]['booker_user_id'],
