@@ -13,3 +13,12 @@ def create_test_user
         RETURNING user_id, name, email;
         ").first
 end
+
+def create_test_user_from_frontend
+    visit('/sign_up')
+    fill_in('name', with: 'Test User')
+    fill_in('email', with: 'test@email.com')
+    fill_in('password', with: 'password')
+    click_on('Submit')
+    User.retrieve_by_email(email: 'test@email.com')
+end
