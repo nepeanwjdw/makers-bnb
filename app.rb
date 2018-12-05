@@ -77,5 +77,10 @@ class MakersBnB < Sinatra::Base
     erb(:host_dashboard)
   end
 
+  post '/host_dashboard' do
+    # code here to amend details in database
+    redirect('/host_dashboard')
+  end
+
   run! if app_file == $0
 end
