@@ -16,10 +16,10 @@ class Booking
   end
 
   def return_dates
-    start_date = DateTime.strptime(@booking_start_date, "%Y/%m/%d")
-    end_date = DateTime.strptime(@booking_end_date, "%Y/%m/%d")
+    start_date = DateTime.strptime(@booking_start_date, "%Y-%m-%d")
+    end_date = DateTime.strptime(@booking_end_date, "%Y-%m=%d")
     (start_date..end_date).map do |date|
-      date.strftime("%Y/%m/%d").to_s
+      date.strftime("%Y-%m-%d").to_s
     end
   end
 
