@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Makers BnB - Sign In</title>
+    <link rel="stylesheet" type="text/css" href="colours.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
     <style>
-
       blink {
         animation: blinker 0.6s linear infinite;
         color: #ff0000;
@@ -12,19 +13,33 @@
       @keyframes blinker {
         50% { opacity: 0; }
       }
-
     </style>
   </head>
+
   <body>
+    <style>
+      body {
+        text-align:center;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
+      }
+    </style>
+
+    <h1 class="heading">Sign in</h1>
 
     <blink><%= flash[:notice] %></blink>
 
     <form action="/sign_in" method="post">
       <input type="text" name="email" placeholder="Enter your email">
       <input type="password" name="password" placeholder="Enter your password">
-      <input type="submit" value="Submit">
+      <button type="submit" class="button" style="vertical-align:middle" value="Submit"><span>Submit</span>
     </form>
 
-    <a href='/'>Back</a>
+    <form action="/">
+      <button type="submit" class="button" style="vertical-align:middle"><span>Back</span>
+    </form>
+
+    <script src="jquery.js"></script>
   </body>
 </html>
