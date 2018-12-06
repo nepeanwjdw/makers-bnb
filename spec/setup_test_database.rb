@@ -14,6 +14,18 @@ def create_test_user
         ").first
 end
 
+def create_test_space(user_id:)
+  name = 'Makers BNB'
+  description = 'Lovely space to stay'
+  price = 99
+
+  Space.create(
+    name: name,
+    description: description,
+    price: price,
+    user_id: user_id
+  )
+
 def create_test_user_from_frontend
     visit('/sign_up')
     fill_in('name', with: 'Test User')
