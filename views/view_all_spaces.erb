@@ -11,7 +11,7 @@
     <style>
       body {
         text-align:center;
-        margin-top: 300px;
+        margin-top: 100px;
         margin-bottom: 200px;
         background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
         background-repeat: no-repeat;
@@ -24,20 +24,15 @@
     <a href='/'>Sign Out</a>
     <div class="space">
     <% @spaces.each do |hash| %>
-      <p class="a">ID: <%= hash["space_id"] %></p>
-      <p class="a">Name: <%= hash["spacename"] %></p>
+      <p class="a">ID: <%= hash["space_id"] %> || Name: <%= hash["spacename"] %></p>
+      <p class="a" ><img src="<%=hash["image"]%>"></p>
       <p class="a">Description: <%= hash["description"] %></p>
       <p class="a">Price: £<%= hash["price"] %></p>
       <p class="a">Host ID: <%= hash["user_id"] %></p>
-      <p class="a">Host Name: <%= hash["username"] %></p>
-      <p class="a">Host Email: <%= hash["email"] %></p>
-      <p>---------</p>
+      <p class="a">Host Name: <%= hash["username"] %> || Host Email: <%= hash["email"] %></p>
+      <p>--------------</p>
     <% end %>
     </div>
-
-    <div class="logo">
-    <img src= 'Webp.net-resizeimage.jpg'>
-    <div>
 
     <script src="jquery.js"></script>
   </body>
