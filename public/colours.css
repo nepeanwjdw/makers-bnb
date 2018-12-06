@@ -1,3 +1,11 @@
+body {
+    text-align:center;
+    margin-top: 350px;
+    margin-bottom: 200px;
+    background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
 
 .button {
   display: inline-block;

@@ -1,27 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>Dashboard</title>
+    <%= erb :_head %>
   </head>
   <body>
 
     <%= flash[:notice] %>
-    <style>
-      body {
-        text-align:center;
-        margin-top: 200px;
-        margin-bottom: 200px;
-        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
-        background-repeat: no-repeat top left;
-        background-attachment: fixed;
-      }
-
-    </style>
-
-
-
-
 
     <br><a href='/create_space'>Create a space</a>
     <a href='/'>Sign Out</a>
@@ -41,4 +26,9 @@
       <p>---------</p>
     <% end %>
   </body>
+
+  <div class="logo">
+    <img src= 'Webp.net-resizeimage.jpg'>
+  <div>
+
 </html>
