@@ -22,21 +22,39 @@
     </style>
     <h1 class="heading">Spaces</h1>
 
-    <a href='/create_space'>Create a space</a>
-    <a href='/'>Sign Out</a>
-    <div class="space">
+    <% if session[:user_id] %>
+    <form action="/create_space">
+      <button type="submit" class="button" style="vertical-align:middle"><span>Create a Space</span></button>
+    </form>
+
+    <form action="/sign_out">
+      <button type="submit" class="button" style="vertical-align:middle"><span>Sign Out</span></button>
+    </form>
+    <% else %>
+    <form action="/sign_in">
+      <button type="submit" class="button" style="vertical-align:middle"><span>Sign In</span></button>
+    </form>
+
+    <form action="/sign_up">
+      <button type="submit" class="button" style="vertical-align:middle"><span>Sign Up</span></button>
+    </form>
+    <% end %>
+
     <% @spaces.each do |hash| %>
+    <div class="space">
       <p class="a">ID: <%= hash["space_id"] %> || Name: <%= hash["spacename"] %></p>
       <p class="a" ><img src="<%=hash["image"]%>"></p>
       <p class="a">Description: <%= hash["description"] %></p>
       <p class="a">Price: £<%= hash["price"] %></p>
       <p class="a">Host ID: <%= hash["user_id"] %></p>
       <p class="a">Host Name: <%= hash["username"] %> || Host Email: <%= hash["email"] %></p>
-      <p>--------------</p>
-      <p class="a"><a href="/<%= hash["space_id"] %>/request_space">Request this space</a>
-      <p>---------</p>
-    <% end %>
+      <% if session[:user_id] %>
+      <form action="/<%= hash["space_id"] %>/request_space">
+        <button type="submit" class="button" style="vertical-align:middle"><span>Request this Space</span></button>
+      </form>
+      <% end %>
     </div>
+    <% end %>
 
     <script src="jquery.js"></script>
   </body>
