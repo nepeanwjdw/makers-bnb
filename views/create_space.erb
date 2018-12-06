@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>Makers BnB - Create Space</title>
-    <link rel="stylesheet" type="text/css" href="colours.css">
+    <%= erb :_head %>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
   </head>
 
   <body>
-
-    <style>
-      body {
-        text-align:center;
-        margin-top: 300px;
-        margin-bottom: 200px;
-        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
-      }
-    </style>
 
     <h1 class="heading">Create a space</h1>
 
@@ -30,9 +19,8 @@
        <input type="text" name="price" placeholder="Price per night">
        <input type="text" name="image" placeholder="Image url">
         Select dates: <input type="text" name="daterange" value="01/01/2018 - 01/15/2018">
-       <button type="submit" class="button" style="vertical-align:middle" value="Submit"><span>Submit</span>
+       <button type="submit" class="button" style="vertical-align:middle" value="Submit"><span>Submit</span></button>
       </form>
-
 
     <script>
     $(function() {
@@ -80,8 +68,8 @@
     </script>
 
     <div class="logo">
-    <img src= 'Webp.net-resizeimage.jpg'>
+      <img src= 'Webp.net-resizeimage.jpg'>
     <div>
-    <script src="jquery.js"></script>
+
   </body>
 </html>

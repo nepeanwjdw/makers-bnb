@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>Makers BnB - Request Space</title>
-    <link rel="stylesheet" type="text/css" href="colours.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
-    <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-      crossorigin="anonymous"></script>
-      <script>
-        var availableDates = <%= @available_dates %>;
+    <%= erb :_head %>
 
-        function available(date) {
-            ymd = date.getFullYear() + '-'
-              + ('0' + (date.getMonth()+1)).slice(-2) + '-'
-              + ('0' + date.getDate()).slice(-2);
+    <script>
+      var availableDates = <%= @available_dates %>;
 
-            if ($.inArray(ymd, availableDates) == -1) {
-              return [false, "", "Unavailable"];
-            } else {
-                return [true, ""];
-            }
-        }
+      function available(date) {
+          ymd = date.getFullYear() + '-'
+            + ('0' + (date.getMonth()+1)).slice(-2) + '-'
+            + ('0' + date.getDate()).slice(-2);
 
-        $( function() {
-          $( "#datepicker" ).datepicker({
-            dateFormat: "dd/mm/yy",
-            beforeShowDay: available
-          });
-        } );
-      </script>
+          if ($.inArray(ymd, availableDates) == -1) {
+            return [false, "", "Unavailable"];
+          } else {
+              return [true, ""];
+          }
+      }
 
+      $( function() {
+        $( "#datepicker" ).datepicker({
+          dateFormat: "dd/mm/yy",
+          beforeShowDay: available
+        });
+      } );
+    </script>
   </head>
 
   <body>
@@ -53,5 +43,10 @@
       Select date: <input type="text" id="datepicker" name="booking_start_date">
       <input type="submit" value="Submit">
     </form>
+
+    <div class="logo">
+      <img src= 'Webp.net-resizeimage.jpg'>
+    <div>
+
   </body>
 </html>
