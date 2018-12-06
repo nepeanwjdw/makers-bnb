@@ -8,6 +8,8 @@
   </head>
 
   <body>
+
+    <%= flash[:notice] %>
     <style>
       body {
         text-align:center;
@@ -31,6 +33,8 @@
       <p class="a">Host ID: <%= hash["user_id"] %></p>
       <p class="a">Host Name: <%= hash["username"] %> || Host Email: <%= hash["email"] %></p>
       <p>--------------</p>
+      <p class="a"><a href="/<%= hash["space_id"] %>/request_space">Request this space</a>
+      <p>---------</p>
     <% end %>
     </div>
 
