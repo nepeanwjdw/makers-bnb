@@ -73,12 +73,17 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/host_dashboard' do
+    @logged_in_user = User.retrieve(user_id: session[:user_id])
     @spaces = Space.allFromHost(user_id: session[:user_id])
     erb(:host_dashboard)
   end
 
   post '/host_dashboard' do
-    # code here to amend details in database
+    User.update_name_email(
+      user_id: session[:user_id],
+      new_name: params[:user_name],
+      new_email: params[:user_email]
+    )
     redirect('/host_dashboard')
   end
 
