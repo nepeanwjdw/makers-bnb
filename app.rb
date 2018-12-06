@@ -55,7 +55,8 @@ class MakersBnB < Sinatra::Base
       name: params[:name],
       description: params[:description],
       price: params[:price],
-      user_id: session[:user_id]
+      user_id: session[:user_id],
+      image: params[:image]
     )
     dates = params[:daterange].split(' - ')
     start_date = dates.first.split('/').reverse.join('/')

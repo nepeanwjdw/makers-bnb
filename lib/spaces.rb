@@ -2,7 +2,7 @@ require_relative 'database_connection'
 
 # top level comment
 class Space
-  attr_reader :space_id, :name, :description, :price, :user_id
+  attr_reader :space_id, :name, :description, :price, :user_id, :image
 
   def initialize(space_id:, name:, description:, price:, user_id:)
     @space_id = space_id.to_i
@@ -10,6 +10,7 @@ class Space
     @description = description
     @price = price.to_f
     @user_id = user_id.to_i
+    @image = image
   end
 
   def price_currency
@@ -83,7 +84,7 @@ class Space
     DatabaseConnection.query("
       SELECT users.user_id, users.name
       AS username, users.email, spaces.space_id, spaces.name
-      AS spacename, spaces.description, spaces.price
+      AS spacename, spaces.description, spaces.price, spaces.image
       FROM spaces
       INNER JOIN users ON spaces.user_id=users.user_id
       ORDER BY spaces.space_id ASC;")
@@ -103,18 +104,19 @@ class Space
     DatabaseConnection.query("
       SELECT users.user_id, users.name
       AS username, users.email, spaces.space_id, spaces.name
-      AS spacename, spaces.description, spaces.price
+      AS spacename, spaces.description, spaces.price, spaces.image
       FROM spaces
       INNER JOIN users ON spaces.user_id=users.user_id
       WHERE spaces.user_id='#{user_id}'
       ORDER BY spaces.space_id ASC;")
   end
-  
-  def self.create(name:, description:, price:, user_id:)
+
+  def self.create(name:, description:, price:, user_id:, image:)
+
     result = DatabaseConnection.query("
-      INSERT INTO spaces (name, description, price, user_id)
-      VALUES('#{name.gsub("'","''")}', '#{description.gsub("'","''")}', '#{price}', '#{user_id}')
-      RETURNING space_id, name, description, price, user_id;")
+      INSERT INTO spaces (name, description, price, user_id, image)
+      VALUES('#{name.gsub("'","''")}', '#{description.gsub("'","''")}', '#{price}', '#{user_id}', '#{image}')
+      RETURNING space_id, name, description, price, user_id, image;")
     Space.new(
       space_id: result[0]['space_id'], name: result[0]['name'],
       description: result[0]['description'], price: result[0]['price'],
