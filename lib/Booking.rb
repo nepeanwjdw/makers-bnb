@@ -55,4 +55,27 @@ class Booking
     )
   end
 
+  def self.view_incoming(host_user_id)
+    DatabaseConnection.query("
+      SELECT
+        booking_request_id,
+        booker_user_id,
+        users.name,
+        spaces.user_id,
+        spaces.space_id,
+        booking_start_date,
+        booking_end_date,
+        spaces.name
+      FROM
+        bookings
+        JOIN spaces ON bookings.space_id = spaces.space_id
+        JOIN users ON bookings.booker_user_id = users.user_id
+    WHERE
+      spaces.user_id = '#{host_user_id}'
+    ")
+  end
+
+  def self.view_outgoing(booker_user_id:)
+
+  end
 end
