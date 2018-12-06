@@ -73,6 +73,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/host_dashboard' do
+    @logged_in_user = User.retrieve(user_id: session[:user_id])
     @spaces = Space.allFromHost(user_id: session[:user_id])
     erb(:host_dashboard)
   end

@@ -27,14 +27,13 @@
     <h3>Profile Settings</h3>
     <form class="" action="/host_dashboard" method="post">
       <label for="">Name</label>
-      <input type="text" value="Host's Name" name=""><br>
+      <input type="text" value="<%= @logged_in_user.name %>" name=""><br>
       <label for="">Email</label>
-      <input type="text" value="Host's Email" name=""><br>
-      <label for="">Password</label>
-      <input type="text" value="" name=""><br>
+      <input type="text" value="<%= @logged_in_user.email %>" name=""><br>
       <button type="submit" class="btn btn-primary">Update profile</button>
     </form>
-    <h3>Booking Requests</h3>
+    <h3>Pending Booking Requests You've Made</h3>
+    <h3>Pending Booking Requests For Your Spaces</h3>
     <h3>Your Spaces</h3>
     <% @spaces.each do |hash| %>
       <p><%= hash["spacename"] %> <input type="button" name="Edit" value="Edit"></p>
