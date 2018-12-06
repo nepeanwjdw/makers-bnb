@@ -41,4 +41,18 @@ describe User do
       expect(authenticated_user.email).to eq 'test@test.com'
     end
   end
+
+  describe '.update_name_email' do
+    it 'updates the name and email in the database' do
+      user = create_test_user
+      User.update_name_email(
+        user_id: user['user_id'],
+        new_name: 'John',
+        new_email: 'john@email.com'
+      )
+      updated_user = persisted_users_data(user_id: user['user_id'])
+      expect(updated_user['name']).to eq 'John'
+      expect(updated_user['email']).to eq 'john@email.com'
+    end
+  end
 end
