@@ -32,20 +32,23 @@
 
     <%= flash[:notice] %>
 
-    Space name: <%= @space.name %><br />
-    Space description: <%= @space.description %><br />
-    Space price per night: <%= @space.price_currency %><br />
-    Owner name: <%= @space_info['username'] %><br />
-    Owner id: <%= @space_info['user_id'] %><br />
-    Owner email: <a href="mailto:<%= @space_info['email'] %>"><%= @space_info['email'] %></a><br />
+    <div class="space">
+      <p class="a" ><img src="<%= @space_info['image']%>"></p>
+      <p class="a">Space name: <%= @space.name %></p>
+      <p class="a">Space description: <%= @space.description %></p>
+      <p class="a">Space price per night: <%= @space.price_currency %></p>
+      <p class="a">Owner name: <%= @space_info['username'] %></p>
+      <p class="a">Owner id: <%= @space_info['user_id'] %></p>
+      <p class="a">Owner email: <a href="mailto:<%= @space_info['email'] %>"><%= @space_info['email'] %></a></p>
 
-    <form action="/<%= @space.space_id %>/request_space" method="post" autocomplete="off">
-      Select date: <input type="text" id="datepicker" name="booking_start_date">
-      <input type="submit" value="Submit">
-    </form>
+      <form action="/<%= @space.space_id %>/request_space" method="post" autocomplete="off">
+        Select date: <input type="text" id="datepicker" name="booking_start_date">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
 
     <div class="logo">
-      <img src= 'Webp.net-resizeimage.jpg'>
+      <img src= '/images/Webp.net-resizeimage.jpg'>
     <div>
 
   </body>

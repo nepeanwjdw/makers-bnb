@@ -94,7 +94,7 @@ class Space
     DatabaseConnection.query("
       SELECT users.user_id, users.name
       AS username, users.email, spaces.space_id, spaces.name
-      AS spacename, spaces.description, spaces.price
+      AS spacename, spaces.description, spaces.price, spaces.image
       FROM spaces
       INNER JOIN users ON spaces.user_id=users.user_id
       WHERE spaces.space_id = '#{space_id}';").first
