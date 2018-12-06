@@ -36,6 +36,19 @@ class User
     )
   end
 
+  def self.retrieve_by_email(email:)
+    return nil unless email
+    result = DatabaseConnection.query("
+      SELECT * FROM users
+      WHERE email = '#{email}';
+      ").first
+    User.new(
+      user_id: result['user_id'],
+      name: result['name'],
+      email: result['email']
+    )
+  end
+
   def self.authenticate(email:, password:)
     result = DatabaseConnection.query("
       SELECT * FROM users
@@ -47,5 +60,13 @@ class User
       name: result['name'],
       email: result['email']
     )
+  end
+
+  def self.update_name_email(user_id:, new_name:, new_email:)
+    DatabaseConnection.query("
+      UPDATE Users
+      SET name= '#{new_name.gsub("'","''")}', email= '#{new_email.gsub("'","''")}'
+      WHERE user_id = '#{user_id}';
+    ")
   end
 end

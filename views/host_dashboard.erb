@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <style>
+      body {
+        text-align:center;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
+        background-repeat: no-repeat top left;
+        background-attachment: fixed;
+      }
+
+    </style>
+
+
+
+
+
+
+    <a href='/create_space'>Create a space</a>
+    <a href='/'>Sign Out</a>
+    <h3>Profile Settings</h3>
+    <form class="" action="/host_dashboard" method="post">
+      <label for="user_name">Name</label>
+      <input type="text" value="<%= @logged_in_user.name %>" name="user_name"><br>
+      <label for="user_email">Email</label>
+      <input type="text" value="<%= @logged_in_user.email %>" name="user_email"><br>
+      <input type="submit" name="Submit" value="Update Profile">
+    </form>
+    <h3>Pending Booking Requests You've Made</h3>
+    <h3>Pending Booking Requests For Your Spaces</h3>
+    <h3>Your Spaces</h3>
+    <% @spaces.each do |hash| %>
+      <p><%= hash["spacename"] %> <input type="button" name="Edit" value="Edit"></p>
+      <p>---------</p>
+    <% end %>
+  </body>
+</html>

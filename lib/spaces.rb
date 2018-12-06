@@ -99,6 +99,17 @@ class Space
       WHERE spaces.space_id = '#{space_id}';").first
   end
 
+  def self.allFromHost(user_id:)
+    DatabaseConnection.query("
+      SELECT users.user_id, users.name
+      AS username, users.email, spaces.space_id, spaces.name
+      AS spacename, spaces.description, spaces.price
+      FROM spaces
+      INNER JOIN users ON spaces.user_id=users.user_id
+      WHERE spaces.user_id='#{user_id}'
+      ORDER BY spaces.space_id ASC;")
+  end
+  
   def self.create(name:, description:, price:, user_id:)
     result = DatabaseConnection.query("
       INSERT INTO spaces (name, description, price, user_id)

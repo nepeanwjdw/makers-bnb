@@ -110,4 +110,30 @@ describe Space do
       expect(spaces[0]['price']).to eq '49.99'
     end
   end
+
+  describe '.allFromHost' do
+    it 'shows all spaces from a specific host' do
+      DatabaseConnection.query("
+        INSERT INTO users (user_id, name, email, password)
+        VALUES(15, 'Test User', 'test@user.com', 'password');")
+      DatabaseConnection.query("
+        INSERT INTO users (user_id, name, email, password)
+        VALUES(16, 'Test User 2', 'test2@user.com', 'password');")
+      DatabaseConnection.query("
+        INSERT INTO spaces (name, description, price, user_id)
+        VALUES('Makers!', 'Great!', 49.99, 16)
+        RETURNING space_id, name, description, price, user_id")
+      space_a = DatabaseConnection.query("
+        INSERT INTO spaces (name, description, price, user_id)
+        VALUES('The Ritz Flat', 'Snazzy!', 89.99, 15)
+        RETURNING space_id, name, description, price, user_id")
+      spaces = Space.allFromHost(user_id: 15)
+
+      expect(spaces.ntuples).to eq 1
+      expect(spaces[0]['space_id']).to eq space_a[0]['space_id']
+      expect(spaces[0]['user_id']).to eq '15'
+      expect(spaces[0]['description']).to eq 'Snazzy!'
+      expect(spaces[0]['price']).to eq '89.99'
+    end
+  end
 end

@@ -3,22 +3,45 @@
   <head>
     <meta charset="utf-8">
     <title>Maker BnB - View All Spaces</title>
+    <link rel="stylesheet" type="text/css" href="colours.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
   </head>
+
   <body>
+
     <%= flash[:notice] %>
-    <h3>Spaces</h3>
+    <style>
+      body {
+        text-align:center;
+        margin-top: 300px;
+        margin-bottom: 200px;
+        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+    <h1 class="heading">Spaces</h1>
+
     <a href='/create_space'>Create a space</a>
     <a href='/'>Sign Out</a>
+    <div class="space">
     <% @spaces.each do |hash| %>
-      <p>ID: <%= hash["space_id"] %></p>
-      <p>Name: <%= hash["spacename"] %></p>
-      <p>Description: <%= hash["description"] %></p>
-      <p>Price: £<%= hash["price"] %></p>
-      <p>Host ID: <%= hash["user_id"] %></p>
-      <p>Host Name: <%= hash["username"] %></p>
-      <p>Host Email: <%= hash["email"] %></p>
-      <p><a href="/<%= hash["space_id"] %>/request_space">Request this space</a>
+      <p class="a">ID: <%= hash["space_id"] %></p>
+      <p class="a">Name: <%= hash["spacename"] %></p>
+      <p class="a">Description: <%= hash["description"] %></p>
+      <p class="a">Price: £<%= hash["price"] %></p>
+      <p class="a">Host ID: <%= hash["user_id"] %></p>
+      <p class="a">Host Name: <%= hash["username"] %></p>
+      <p class="a">Host Email: <%= hash["email"] %></p>
+      <p class="a"><a href="/<%= hash["space_id"] %>/request_space">Request this space</a>
       <p>---------</p>
     <% end %>
+    </div>
+
+    <div class="logo">
+    <img src= 'Webp.net-resizeimage.jpg'>
+    <div>
+
+    <script src="jquery.js"></script>
   </body>
 </html>
