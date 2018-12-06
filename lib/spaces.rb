@@ -16,6 +16,69 @@ class Space
     "£#{'%.2f' % @price}"
   end
 
+  def self.check_available_on_date(space_id:, date:)
+    # use self.get_all_booking_dates to get array of dates for space_id
+    # check to see if date is in the array
+    # return true/false accordingly
+  end
+
+  def self.get_bookings_for_space(space_id:)
+    DatabaseConnection.query("
+      SELECT *
+      FROM bookings
+      WHERE space_id = '#{space_id}'
+      ").map do |row|
+      Booking.new(
+        booking_request_id: row['booking_request_id'],
+        booker_user_id: row['booker_user_id'],
+        space_id: row['space_id'],
+        booking_start_date: row['booking_start_date'],
+        booking_end_date: row['booking_end_date'],
+        booking_confirmed: row['booking_confirmed']
+      )
+    end
+  end
+
+  def self.get_available_dates(space_id:)
+    availability = check_availability(space_id: space_id).first
+    start_date = DateTime.strptime(availability['start_date'], "%Y-%m-%d")
+    end_date = DateTime.strptime(availability['end_date'], "%Y-%m-%d")
+    available_range = (start_date..end_date).map do |date|
+      date.strftime("%Y-%m-%d").to_s
+    end
+    bookings = get_confirmed_bookings_for_space(space_id: space_id)
+    available_range - get_all_booking_dates(bookings: bookings)
+  end
+
+  def self.get_confirmed_bookings_for_space(space_id:)
+    get_bookings_for_space(space_id: space_id).select{ |i| i.confirmed? }.map do |booking|
+      booking
+    end
+  end
+
+  def self.get_all_booking_dates(bookings:)
+    bookings.map do |booking|
+      booking.return_dates
+    end.flatten.sort
+  end
+
+  def self.get_bookings_for_user(user_id:)
+    DatabaseConnection.query("
+      SELECT *
+      FROM bookings
+      WHERE user_id = '#{user_id}'
+      ").map do |row|
+      Booking.new(
+        booking_request_id: row['booking_request_id'],
+        booker_user_id: row['booker_user_id'],
+        space_id: row['space_id'],
+        booking_start_date: row['booking_start_date'],
+        booking_end_date: row['booking_end_date'],
+        booking_confirmed: row['booking_confirmed']
+      )
+    end
+  end
+
   def self.all
     DatabaseConnection.query("
       SELECT users.user_id, users.name
@@ -65,4 +128,5 @@ class Space
       row
     end
   end
+
 end

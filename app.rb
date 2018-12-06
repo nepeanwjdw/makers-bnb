@@ -76,6 +76,7 @@ class MakersBnB < Sinatra::Base
       description: @space_info['description'], price: @space_info['price'],
       user_id: @space_info['user_id']
     )
+    @available_dates = Space.get_available_dates(space_id: @space.space_id)
     erb(:request_space)
   end
 
@@ -83,7 +84,8 @@ class MakersBnB < Sinatra::Base
     booker_user_id = session[:user_id]
     space_id = params[:id]
     @space_info = Space.get_space_info(space_id: space_id)
-    booking_start_date = params[:booking_start_date]
+    booking_start_date = params[:booking_start_date].split('/').reverse.join('/')
+    p booking_start_date
     booking = Booking.create_booking_request(booker_user_id: booker_user_id, space_id: space_id, booking_start_date: booking_start_date)
     if booking == nil
       flash[:notice] = 'Request unsuccessful'

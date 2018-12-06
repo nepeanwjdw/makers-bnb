@@ -54,17 +54,7 @@ describe Space do
 
     it 'will return a date range' do
       test_user = create_test_user
-      name = 'Makers BNB'
-      description = 'Lovely space to stay'
-      price = 99
-      user_id = test_user['user_id']
-
-      space = Space.create(
-        name: name,
-        description: description,
-        price: price,
-        user_id: user_id
-      )
+      space = create_test_space(user_id: test_user['user_id'])
 
       start_date = '2018-01-01'
       end_date = '2018-01-02'
@@ -79,6 +69,22 @@ describe Space do
       expect(available['start_date']).to eq(start_date)
       expect(available['end_date']).to eq(end_date)
       expect(available['space_id']).to eq(space.space_id.to_s)
+    end
+
+    it 'can report all confirmed booked dates' do
+      test_user = create_test_user
+      space = create_test_space(user_id: test_user['user_id'])
+
+      start_date = '2018-01-01'
+      end_date = '2018-01-02'
+      Space.create_availability(
+        space_id: space.space_id,
+        start_date: start_date,
+        end_date: end_date
+      )
+
+      
+
     end
   end
 

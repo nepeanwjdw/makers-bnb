@@ -13,3 +13,16 @@ def create_test_user
         RETURNING user_id, name, email;
         ").first
 end
+
+def create_test_space(user_id:)
+  name = 'Makers BNB'
+  description = 'Lovely space to stay'
+  price = 99
+
+  Space.create(
+    name: name,
+    description: description,
+    price: price,
+    user_id: user_id
+  )
+end

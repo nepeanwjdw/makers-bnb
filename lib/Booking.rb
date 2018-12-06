@@ -17,10 +17,14 @@ class Booking
 
   def return_dates
     start_date = DateTime.strptime(@booking_start_date, "%Y-%m-%d")
-    end_date = DateTime.strptime(@booking_end_date, "%Y-%m=%d")
+    end_date = DateTime.strptime(@booking_end_date, "%Y-%m-%d")
     (start_date..end_date).map do |date|
       date.strftime("%Y-%m-%d").to_s
     end
+  end
+
+  def confirmed?
+    @booking_confirmed == "t"
   end
 
   def self.confirm_booking(booking_id:)
@@ -38,7 +42,7 @@ class Booking
 
     result = DatabaseConnection.query("
       INSERT INTO bookings (booker_user_id, space_id, booking_start_date, booking_end_date, booking_confirmed)
-      VALUES('#{booker_user_id}', '#{space_id}', '#{booking_start_date}', '#{booking_end_date}', #{booking_confirmed})
+      VALUES('#{booker_user_id}', '#{space_id}', '#{booking_start_date}', '#{booking_end_date}', '#{booking_confirmed}')
       RETURNING booking_request_id, booker_user_id, space_id, booking_start_date, booking_end_date, booking_confirmed;
     ")
     Booking.new(
