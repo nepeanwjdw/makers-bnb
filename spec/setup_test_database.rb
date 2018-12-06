@@ -25,6 +25,7 @@ def create_test_space(user_id:)
     price: price,
     user_id: user_id
   )
+end
 
 def create_test_user_from_frontend
     visit('/sign_up')
