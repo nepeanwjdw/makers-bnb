@@ -24,8 +24,13 @@ class MakersBnB < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    session[:user_id] = user.user_id
-    redirect('/view_all_spaces')
+    if user
+      session[:user_id] = user.user_id
+      redirect('/view_all_spaces')
+    else
+      flash[:notice] = 'That email already exists!'
+      redirect('/sign_up')
+    end
   end
 
   get '/sign_in' do

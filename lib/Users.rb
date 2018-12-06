@@ -11,6 +11,7 @@ class User
   end
 
   def self.create(name:, email:, password:)
+    return nil if User.retrieve_by_email(email: email)
     result = DatabaseConnection.query("
       INSERT INTO users (name, email, password)
       VALUES('#{name.gsub("'","''")}', '#{email.gsub("'","''")}', '#{password.gsub("'","''")}')
