@@ -79,7 +79,11 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/host_dashboard' do
-    # code here to amend details in database
+    User.update_name_email(
+      user_id: session[:user_id],
+      new_name: params[:user_name],
+      new_email: params[:user_email]
+    )
     redirect('/host_dashboard')
   end
 
