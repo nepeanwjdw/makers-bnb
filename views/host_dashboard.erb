@@ -5,6 +5,8 @@
     <title>Dashboard</title>
   </head>
   <body>
+
+    <%= flash[:notice] %>
     <style>
       body {
         text-align:center;
@@ -21,8 +23,7 @@
 
 
 
-
-    <a href='/create_space'>Create a space</a>
+    <br><a href='/create_space'>Create a space</a>
     <a href='/'>Sign Out</a>
     <h3>Profile Settings</h3>
     <form class="" action="/host_dashboard" method="post">

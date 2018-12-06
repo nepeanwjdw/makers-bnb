@@ -113,6 +113,7 @@ class MakersBnB < Sinatra::Base
       new_name: params[:user_name],
       new_email: params[:user_email]
     )
+    flash[:notice] = "Details Updated!"
     redirect('/host_dashboard')
   end
 
