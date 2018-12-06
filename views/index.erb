@@ -24,17 +24,24 @@
 
     </style>
 
+    <form action="/view_all_spaces">
+      <button type="submit" class="button" style="vertical-align:middle"><span>View Spaces</span></button>
+    </form>
+
+    <% if session[:user_id] %>
+    <form action="/sign_out">
+      <button type="submit" class="button" style="vertical-align:middle"><span>Sign Out</span></button>
+    </form>
+    <% else %>
     <form action="/sign_in">
-      <button type="submit" class="button" style="vertical-align:middle"><span>Sign In </span>
+      <button type="submit" class="button" style="vertical-align:middle"><span>Sign In</span></button>
     </form>
 
     <form action="/sign_up">
-      <button type="submit" class="button" style="vertical-align:middle"><span>Sign Up </span>
+      <button type="submit" class="button" style="vertical-align:middle"><span>Sign Up</span></button>
     </form>
 
-    <form action="/view_all_spaces">
-      <button type="submit" class="button" style="vertical-align:middle"><span>View Spaces </span>
-    </form>
+    <% end %>
 
     <div class="logo">
     <img src= 'Webp.net-resizeimage.jpg'>

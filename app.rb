@@ -97,6 +97,13 @@ class MakersBnB < Sinatra::Base
     end
   end
 
+  get '/sign_out' do
+    session.clear
+    flash[:notice] = 'You have signed out'
+    redirect '/'
+  end
+
+
   get '/view_all_spaces' do
     @spaces = Space.all
     erb(:view_all_spaces)
