@@ -35,6 +35,13 @@ class Booking
     ")
   end
 
+  def self.reject_booking(booking_id:)
+    DatabaseConnection.query("
+      DELETE FROM bookings
+      WHERE booking_request_id = #{booking_id};
+      ")
+  end
+
   def self.create_booking_request(booker_user_id:, space_id:, booking_start_date:, booking_end_date: nil)
     # following line handles current functionality where booking is just one day
     booking_end_date = booking_start_date if booking_end_date == nil
@@ -65,13 +72,15 @@ class Booking
         spaces.name AS space_name,
         booking_start_date,
         booking_end_date,
-        spaces.user_id AS host_user_id
+        spaces.user_id AS host_user_id,
+        booking_confirmed
       FROM
         bookings
         JOIN spaces ON bookings.space_id = spaces.space_id
         JOIN users ON bookings.booker_user_id = users.user_id
-    WHERE
-      spaces.user_id = '#{host_user_id}'
+      WHERE
+        spaces.user_id = '#{host_user_id}'
+        AND booking_confirmed = FALSE
     ")
   end
 

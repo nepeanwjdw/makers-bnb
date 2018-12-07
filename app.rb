@@ -126,11 +126,15 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/:id/accept_request' do
-    confirm_booking(booking_id:)
+    Booking.confirm_booking(booking_id: params[:id])
+    flash[:notice] = "Booking Request Accepted!"
+    redirect('/host_dashboard')
   end
 
   post '/:id/reject_request' do
-
+    Booking.reject_booking(booking_id: params[:id])
+    flash[:notice] = "Booking Request Rejected"
+    redirect('/host_dashboard')
   end
 
   run! if app_file == $0
