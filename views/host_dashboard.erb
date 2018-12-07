@@ -26,9 +26,12 @@
     <p>From: <%= request["booking_start_date"] %></p>
     <p>To: <%= request["booking_end_date"] %></p>
     <form class="" action="/<%= request['booking_request_id'] %>/accept_request" method="post">
+      <input type="hidden" id="booker_user_id" name="booker_user_id" value=<%= request['booker_user_id'] %>>
+      <input type="hidden" id="host_user_id" name="host_user_id" value=<%= request['host_user_id'] %>>
       <p><input type="submit" name="Accept" value="Accept"></p>
     </form>
     <form class="" action="/<%= request['booking_request_id'] %>/reject_request" method="post">
+      <input type="hidden" id="booker_user_id" name="booker_user_id" value=<%= request['booker_user_id'] %>>
       <p><input type="submit" name="Reject" value="Reject"></p>
     </form>
     <p>---------</p>

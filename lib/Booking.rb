@@ -1,6 +1,6 @@
 require_relative 'database_connection'
 require 'date'
-require 'email'
+require_relative 'email'
 
 # top level comment
 class Booking
