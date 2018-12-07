@@ -103,19 +103,19 @@ class MakersBnB < Sinatra::Base
     redirect '/'
   end
 
-
   get '/view_all_spaces' do
     @spaces = Space.all
     erb(:view_all_spaces)
   end
 
   get '/host_dashboard' do
+    @incoming_requests = Booking.view_incoming(host_user_id: session[:user_id])
     @logged_in_user = User.retrieve(user_id: session[:user_id])
     @spaces = Space.allFromHost(user_id: session[:user_id])
     erb(:host_dashboard)
   end
 
-  post '/host_dashboard' do
+  post '/edit_user_details' do
     User.update_name_email(
       user_id: session[:user_id],
       new_name: params[:user_name],
@@ -123,6 +123,14 @@ class MakersBnB < Sinatra::Base
     )
     flash[:notice] = "Details Updated!"
     redirect('/host_dashboard')
+  end
+
+  post '/:id/accept_request' do
+    confirm_booking(booking_id:)
+  end
+
+  post '/:id/reject_request' do
+
   end
 
   run! if app_file == $0

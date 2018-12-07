@@ -55,7 +55,7 @@ class Booking
     )
   end
 
-  def self.view_incoming(host_user_id)
+  def self.view_incoming(host_user_id:)
     DatabaseConnection.query("
       SELECT
         booking_request_id,
@@ -76,6 +76,6 @@ class Booking
   end
 
   def self.view_outgoing(booker_user_id:)
-
+    # code here to see requests you've made
   end
 end
