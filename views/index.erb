@@ -2,27 +2,11 @@
 <html lang="en" dir="ltr">
 
   <head>
-    <meta charset="utf-8">
     <title>Makers BnB</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
-    <link rel="stylesheet" type="text/css" href="colours.css">
-
+    <%= erb :_head %>
   </head>
 
   <body>
-
-    <style>
-      body {
-        text-align:center;
-        margin-top: 350px;
-        margin-bottom: 200px;
-        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-
-    </style>
-
     <form action="/view_all_spaces">
       <button type="submit" class="button" style="vertical-align:middle"><span>View Spaces</span></button>
     </form>
@@ -43,7 +27,7 @@
     <% end %>
 
     <div class="logo">
-    <img src= 'Webp.net-resizeimage.jpg'>
+    <img src= '/images/Webp.net-resizeimage.jpg'>
     <div>
 
   </body>

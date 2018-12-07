@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>Maker BnB - View All Spaces</title>
-    <link rel="stylesheet" type="text/css" href="colours.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <%= erb :_head %>
   </head>
 
   <body>
 
     <%= flash[:notice] %>
-    <style>
-      body {
-        text-align:center;
-        margin-top: 100px;
-        margin-bottom: 200px;
-        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-    </style>
     <h1 class="heading">Spaces</h1>
 
     <% if session[:user_id] %>
@@ -30,7 +18,7 @@
     <form action="/sign_out">
       <button type="submit" class="button" style="vertical-align:middle"><span>Sign Out</span></button>
     </form>
-  
+
     <form action="/host_dashboard">
       <button type="submit" class="button" style="vertical-align:middle"><span>Dashboard</span></button>
     </form>
@@ -60,6 +48,9 @@
     </div>
     <% end %>
 
-    <script src="jquery.js"></script>
+    <div class="logo">
+      <img src= '/images/Webp.net-resizeimage.jpg'>
+    <div>
+
   </body>
 </html>

@@ -1,4 +1,5 @@
 require_relative 'database_connection'
+require 'bcrypt'
 
 # top level comment
 class User
@@ -11,9 +12,11 @@ class User
   end
 
   def self.create(name:, email:, password:)
+    return nil if User.retrieve_by_email(email: email)
+    hashed_password = BCrypt::Password.create(password)
     result = DatabaseConnection.query("
       INSERT INTO users (name, email, password)
-      VALUES('#{name.gsub("'","''")}', '#{email.gsub("'","''")}', '#{password.gsub("'","''")}')
+      VALUES('#{name.gsub("'","''")}', '#{email.gsub("'","''")}', '#{hashed_password}')
       RETURNING user_id, name, email;
       ").first
     User.new(
@@ -42,6 +45,8 @@ class User
       SELECT * FROM users
       WHERE email = '#{email}';
       ").first
+      p result
+    return if result == nil
     User.new(
       user_id: result['user_id'],
       name: result['name'],
@@ -52,9 +57,10 @@ class User
   def self.authenticate(email:, password:)
     result = DatabaseConnection.query("
       SELECT * FROM users
-      WHERE email = '#{email.gsub("'","''")}' AND password = '#{password.gsub("'","''")}'
+      WHERE email = '#{email.gsub("'","''")}'
       ").first
     return if result.nil?
+    return unless BCrypt::Password.new(result['password']) == password
     User.new(
       user_id: result['user_id'],
       name: result['name'],
