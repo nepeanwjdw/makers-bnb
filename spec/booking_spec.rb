@@ -9,12 +9,14 @@ describe Booking do
       description = 'Lovely space to stay'
       price = 99
       user_id = test_user['user_id']
+      image = 'duck.jpg'
 
       space = Space.create(
         name: name,
         description: description,
         price: price,
-        user_id: user_id
+        user_id: user_id,
+        image: 'duck.jpg'
       )
 
       booking_start_date = "2018-12-12"
@@ -36,12 +38,14 @@ describe Booking do
       description = 'Lovely space to stay'
       price = 99
       user_id = test_user['user_id']
+      image = 'duck.jpg'
 
       space = Space.create(
         name: name,
         description: description,
         price: price,
-        user_id: user_id
+        user_id: user_id,
+        image: image
       )
 
       booking_start_date = "2018-12-12"

@@ -5,13 +5,15 @@ feature 'view spaces' do
       name: 'Makers!',
       description: 'Great!',
       price: 49.99,
-      user_id: user['user_id']
+      user_id: user['user_id'],
+      image: 'duck.jpg'
     )
     Space.create(
       name: 'The Ritz Flat',
       description: 'Snazzy!',
       price: 89.99,
-      user_id: user['user_id']
+      user_id: user['user_id'],
+      image: 'duck.jpg'
     )
     visit('/view_all_spaces')
     expect(page).to have_content('Makers!')

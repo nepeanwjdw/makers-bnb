@@ -4,7 +4,7 @@ require_relative 'database_connection'
 class Space
   attr_reader :space_id, :name, :description, :price, :user_id, :image
 
-  def initialize(space_id:, name:, description:, price:, user_id:)
+  def initialize(space_id:, name:, description:, price:, user_id:, image: "")
     @space_id = space_id.to_i
     @name = name
     @description = description
@@ -94,7 +94,7 @@ class Space
     DatabaseConnection.query("
       SELECT users.user_id, users.name
       AS username, users.email, spaces.space_id, spaces.name
-      AS spacename, spaces.description, spaces.price
+      AS spacename, spaces.description, spaces.price, spaces.image
       FROM spaces
       INNER JOIN users ON spaces.user_id=users.user_id
       WHERE spaces.space_id = '#{space_id}';").first
@@ -120,7 +120,7 @@ class Space
     Space.new(
       space_id: result[0]['space_id'], name: result[0]['name'],
       description: result[0]['description'], price: result[0]['price'],
-      user_id: result[0]['user_id']
+      user_id: result[0]['user_id'], image: result[0]['image']
     )
   end
 
@@ -140,6 +140,14 @@ class Space
       ").map do |row|
       row
     end
+  end
+
+  def self.update(space_id:, name:, description:, price:, image:)
+    DatabaseConnection.query("
+      UPDATE spaces
+      SET name = '#{name.gsub("'","''")}', description = '#{description.gsub("'","''")}', price = '#{price}', image = '#{image}'
+      WHERE space_id = '#{space_id}';
+    ")
   end
 
 end

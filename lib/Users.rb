@@ -64,7 +64,7 @@ class User
 
   def self.update_name_email(user_id:, new_name:, new_email:)
     DatabaseConnection.query("
-      UPDATE Users
+      UPDATE users
       SET name= '#{new_name.gsub("'","''")}', email= '#{new_email.gsub("'","''")}'
       WHERE user_id = '#{user_id}';
     ")

@@ -17,7 +17,8 @@ feature 'creating a new space' do
       name: name,
       description: description,
       price: price,
-      user_id: user.user_id
+      user_id: user.user_id,
+      image: 'duck.jpg'
     )
 
     expect(space.name).to eq(name)
