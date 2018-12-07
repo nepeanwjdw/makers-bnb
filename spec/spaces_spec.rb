@@ -9,12 +9,14 @@ describe Space do
       description = 'Lovely space to stay'
       price = 99
       user_id = test_user['user_id']
+      image = 'duck.jpg'
 
       space = Space.create(
         name: name,
         description: description,
         price: price,
-        user_id: user_id
+        user_id: user_id,
+        image: image
       )
 
       expect(space).to be_a Space
@@ -32,12 +34,14 @@ describe Space do
       description = 'Lovely space to stay'
       price = 99
       user_id = test_user['user_id']
+      image = 'duck.jpg'
 
       space = Space.create(
         name: name,
         description: description,
         price: price,
-        user_id: user_id
+        user_id: user_id,
+        image: image
       )
 
       start_date = '2018-01-01'
@@ -54,31 +58,31 @@ describe Space do
 
     it 'will return a date range' do
       test_user = create_test_user
-      space = create_test_space(user_id: test_user['user_id'])
+      create_test_space
 
       start_date = '2018-01-01'
       end_date = '2018-01-02'
       Space.create_availability(
-        space_id: space.space_id,
+        space_id: 1,
         start_date: start_date,
         end_date: end_date
       )
 
-      available = Space.check_availability(space_id: space.space_id).first
+      available = Space.check_availability(space_id: 1).first
 
       expect(available['start_date']).to eq(start_date)
       expect(available['end_date']).to eq(end_date)
-      expect(available['space_id']).to eq(space.space_id.to_s)
+      expect(available['space_id']).to eq('1')
     end
 
     it 'can report all confirmed booked dates' do
-      test_user = create_test_user
-      space = create_test_space(user_id: test_user['user_id'])
+      create_test_user
+      create_test_space
 
       start_date = '2018-01-01'
       end_date = '2018-01-02'
       Space.create_availability(
-        space_id: space.space_id,
+        space_id: 1,
         start_date: start_date,
         end_date: end_date
       )
@@ -134,6 +138,22 @@ describe Space do
       expect(spaces[0]['user_id']).to eq '15'
       expect(spaces[0]['description']).to eq 'Snazzy!'
       expect(spaces[0]['price']).to eq '89.99'
+    end
+  end
+
+  describe '.update' do
+    it 'updates a space already in the database' do
+      create_test_user
+      create_test_space
+
+      Space.update(space_id: 1, name: 'Bakers MNM', description: 'Nice space to stay', price: 88, image: 'a_duck.jpg')
+
+      connection = PG.connect(dbname: 'makers_bnb_test')
+      result = connection.query("SELECT * FROM spaces WHERE user_id = 15")
+      
+      expect(result[0]['name']).to eq('Bakers MNM')
+      expect(result[0]['description']).to eq('Nice space to stay')
+      expect(result[0]['price']).to eq('88')
     end
   end
 end

@@ -24,8 +24,13 @@ class MakersBnB < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    session[:user_id] = user.user_id
-    redirect('/view_all_spaces')
+    if user
+      session[:user_id] = user.user_id
+      redirect('/view_all_spaces')
+    else
+      flash[:notice] = 'That email already exists!'
+      redirect('/sign_up')
+    end
   end
 
   get '/sign_in' do
@@ -145,6 +150,27 @@ class MakersBnB < Sinatra::Base
       booker_id: params[:booker_user_id]
     )
     flash[:notice] = "Booking Request Rejected"
+
+get '/:id/edit' do
+    space_id = params[:id]
+    @space_info = Space.get_space_info(space_id: space_id)
+    @space = Space.new(
+      space_id: @space_info['space_id'], name: @space_info['spacename'],
+      description: @space_info['description'], price: @space_info['price'],
+      user_id: @space_info['user_id'], image: @space_info['image']
+    )
+    erb(:edit)
+  end
+
+  post '/:id/edit' do
+    Space.update(
+      space_id: params[:id],
+      name: params[:name],
+      description: params[:description],
+      price: params[:price],
+      image: params[:image]
+    )
+    flash[:notice] = "Details Updated!"
     redirect('/host_dashboard')
   end
 

@@ -4,7 +4,7 @@ describe Email do
   describe '.create' do
     it 'sends an email' do
       # NEED TO DOUBLE COMPOSER
-      output = Email.create('alittlecross@live.co.uk', 'signed_up')
+      output = Email.create('makers_bnb@outlook.com', 'signed_up')
       expect(output.status).to eq("250")
     end
   end

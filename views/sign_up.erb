@@ -3,12 +3,22 @@
   <head>
     <title>Makers BnB - Sign Up</title>
     <%= erb :_head %>
+    <style>
+      blink {
+        animation: blinker 0.6s linear infinite;
+        color: #ff0000;
+      }
+      @keyframes blinker {
+        50% { opacity: 0; }
+      }
+    </style>
   </head>
 
   <body>
 
     <h1 class="heading">Sign Up</h1>
 
+    <blink><%= flash[:notice] %></blink>
 
     <form action="/sign_up" method="post">
       <input type="text" name="name" placeholder="Enter your name">

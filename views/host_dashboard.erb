@@ -7,6 +7,16 @@
   <body>
 
     <%= flash[:notice] %>
+    <style>
+      body {
+        text-align:center;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        background-image: url("https://www.highreshdwallpapers.com/wp-content/uploads/2013/12/City-Scene.jpg");
+        background-repeat: no-repeat top left;
+        background-attachment: fixed;
+      }
+    </style>
 
     <br><a href='/create_space'>Create a space</a>
     <a href='/'>Sign Out</a>
@@ -38,7 +48,10 @@
     <% end %>
     <h3>Your Spaces</h3>
     <% @spaces.each do |hash| %>
-      <p><%= hash["spacename"] %> <input type="button" name="Edit" value="Edit"></p>
+      <p><%= hash["spacename"] %> 
+      <form class="" action="/<%= hash["space_id"] %>/edit">
+        <button type="submit" class="button" value="/<%= hash["space_id"] %>/edit">Edit</button>
+      </form></p>
       <p>---------</p>
     <% end %>
   </body>
