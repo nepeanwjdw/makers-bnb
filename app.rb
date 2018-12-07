@@ -150,8 +150,9 @@ class MakersBnB < Sinatra::Base
       booker_id: params[:booker_user_id]
     )
     flash[:notice] = "Booking Request Rejected"
+  end
 
-get '/:id/edit' do
+  get '/:id/edit' do
     space_id = params[:id]
     @space_info = Space.get_space_info(space_id: space_id)
     @space = Space.new(
