@@ -21,7 +21,7 @@
     <br><a href='/create_space'>Create a space</a>
     <a href='/'>Sign Out</a>
     <h3>Profile Settings</h3>
-    <form class="" action="/host_dashboard" method="post">
+    <form class="" action="/edit_user_details" method="post">
       <label for="user_name">Name</label>
       <input type="text" value="<%= @logged_in_user.name %>" name="user_name"><br>
       <label for="user_email">Email</label>
@@ -30,6 +30,22 @@
     </form>
     <h3>Pending Booking Requests You've Made</h3>
     <h3>Pending Booking Requests For Your Spaces</h3>
+    <% @incoming_requests.each do |request| %>
+    <p>Requested By: <%= request["booker_name"] %></p>
+    <p>Space Requested: <%= request["space_name"] %></p>
+    <p>From: <%= request["booking_start_date"] %></p>
+    <p>To: <%= request["booking_end_date"] %></p>
+    <form class="" action="/<%= request['booking_request_id'] %>/accept_request" method="post">
+      <input type="hidden" id="booker_user_id" name="booker_user_id" value=<%= request['booker_user_id'] %>>
+      <input type="hidden" id="host_user_id" name="host_user_id" value=<%= request['host_user_id'] %>>
+      <p><input type="submit" name="Accept" value="Accept"></p>
+    </form>
+    <form class="" action="/<%= request['booking_request_id'] %>/reject_request" method="post">
+      <input type="hidden" id="booker_user_id" name="booker_user_id" value=<%= request['booker_user_id'] %>>
+      <p><input type="submit" name="Reject" value="Reject"></p>
+    </form>
+    <p>---------</p>
+    <% end %>
     <h3>Your Spaces</h3>
     <% @spaces.each do |hash| %>
       <p><%= hash["spacename"] %> 

@@ -1,5 +1,6 @@
 require_relative 'database_connection'
 require 'date'
+require_relative 'email'
 
 # top level comment
 class Booking
@@ -27,12 +28,25 @@ class Booking
     @booking_confirmed == "t"
   end
 
-  def self.confirm_booking(booking_id:)
+  def self.confirm_booking(booking_id:, booker_id:, host_id:)
     DatabaseConnection.query("
       UPDATE bookings
       SET booking_confirmed = true
       WHERE booking_request_id = #{booking_id};
     ")
+    booker_email = User.retrieve(user_id: booker_id).email
+    host_email = User.retrieve(user_id: host_id).email
+    Email.create(booker_email, "request_confirmed")
+    Email.create(host_email, "confirm_request")
+  end
+
+  def self.reject_booking(booking_id:, booker_id:)
+    DatabaseConnection.query("
+      DELETE FROM bookings
+      WHERE booking_request_id = #{booking_id};
+    ")
+    booker_email = User.retrieve(user_id: booker_id).email
+    Email.create(booker_email, "request_denied")
   end
 
   def self.create_booking_request(booker_user_id:, space_id:, booking_start_date:, booking_end_date: nil)
@@ -55,4 +69,29 @@ class Booking
     )
   end
 
+  def self.view_incoming(host_user_id:)
+    DatabaseConnection.query("
+      SELECT
+        booking_request_id,
+        booker_user_id,
+        users.name AS booker_name,
+        spaces.space_id,
+        spaces.name AS space_name,
+        booking_start_date,
+        booking_end_date,
+        spaces.user_id AS host_user_id,
+        booking_confirmed
+      FROM
+        bookings
+        JOIN spaces ON bookings.space_id = spaces.space_id
+        JOIN users ON bookings.booker_user_id = users.user_id
+      WHERE
+        spaces.user_id = '#{host_user_id}'
+        AND booking_confirmed = FALSE
+    ")
+  end
+
+  def self.view_outgoing(booker_user_id:)
+    # code here to see requests you've made
+  end
 end

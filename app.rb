@@ -92,7 +92,11 @@ class MakersBnB < Sinatra::Base
     @space_info = Space.get_space_info(space_id: space_id)
     booking_start_date = params[:booking_start_date].split('/').reverse.join('/')
     p booking_start_date
-    booking = Booking.create_booking_request(booker_user_id: booker_user_id, space_id: space_id, booking_start_date: booking_start_date)
+    booking = Booking.create_booking_request(
+      booker_user_id: booker_user_id,
+      space_id: space_id,
+      booking_start_date: booking_start_date
+    )
     if booking == nil
       flash[:notice] = 'Request unsuccessful'
       redirect '/:id/request_space'
@@ -114,12 +118,13 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/host_dashboard' do
+    @incoming_requests = Booking.view_incoming(host_user_id: session[:user_id])
     @logged_in_user = User.retrieve(user_id: session[:user_id])
     @spaces = Space.allFromHost(user_id: session[:user_id])
     erb(:host_dashboard)
   end
 
-  post '/host_dashboard' do
+  post '/edit_user_details' do
     User.update_name_email(
       user_id: session[:user_id],
       new_name: params[:user_name],
@@ -129,7 +134,24 @@ class MakersBnB < Sinatra::Base
     redirect('/host_dashboard')
   end
 
-  get '/:id/edit' do
+  post '/:id/accept_request' do
+    Booking.confirm_booking(
+      booking_id: params[:id],
+      booker_id: params[:booker_user_id],
+      host_id: params[:host_user_id]
+    )
+    flash[:notice] = "Booking Request Accepted!"
+    redirect('/host_dashboard')
+  end
+
+  post '/:id/reject_request' do
+    Booking.reject_booking(
+      booking_id: params[:id],
+      booker_id: params[:booker_user_id]
+    )
+    flash[:notice] = "Booking Request Rejected"
+
+get '/:id/edit' do
     space_id = params[:id]
     @space_info = Space.get_space_info(space_id: space_id)
     @space = Space.new(
