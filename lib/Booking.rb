@@ -60,12 +60,12 @@ class Booking
       SELECT
         booking_request_id,
         booker_user_id,
-        users.name,
-        spaces.user_id,
+        users.name AS booker_name,
         spaces.space_id,
+        spaces.name AS space_name,
         booking_start_date,
         booking_end_date,
-        spaces.name
+        spaces.user_id AS host_user_id
       FROM
         bookings
         JOIN spaces ON bookings.space_id = spaces.space_id
