@@ -1,5 +1,6 @@
 require_relative 'database_connection'
 require 'date'
+require 'email'
 
 # top level comment
 class Booking
@@ -27,19 +28,25 @@ class Booking
     @booking_confirmed == "t"
   end
 
-  def self.confirm_booking(booking_id:)
+  def self.confirm_booking(booking_id:, booker_id:, host_id:)
     DatabaseConnection.query("
       UPDATE bookings
       SET booking_confirmed = true
       WHERE booking_request_id = #{booking_id};
     ")
+    booker_email = User.retrieve(user_id: booker_id).email
+    host_email = User.retrieve(user_id: host_id).email
+    Email.create(booker_email, "request_confirmed")
+    Email.create(host_email, "confirm_request")
   end
 
-  def self.reject_booking(booking_id:)
+  def self.reject_booking(booking_id:, booker_id:)
     DatabaseConnection.query("
       DELETE FROM bookings
       WHERE booking_request_id = #{booking_id};
-      ")
+    ")
+    booker_email = User.retrieve(user_id: booker_id).email
+    Email.create(booker_email, "request_denied")
   end
 
   def self.create_booking_request(booker_user_id:, space_id:, booking_start_date:, booking_end_date: nil)
